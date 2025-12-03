@@ -18,7 +18,7 @@ public class Main {
         em.getTransaction().begin();
 
         Despesa d = new Despesa();
-        d.setDescricao("Teste");
+        d.setDescricao("Teste1");
         d.setValor(50);
         d.setCategoria("Comida");
         d.setData(LocalDate.now());
