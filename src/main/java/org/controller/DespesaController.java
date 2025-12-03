@@ -41,6 +41,7 @@ public class DespesaController {
         categoriaBox.setItems(FXCollections.observableArrayList(Categoria.values()));
 
         atualizarTabela();
+        atualizarTotal();
     }
 
     @FXML
@@ -54,6 +55,7 @@ public class DespesaController {
 
             dao.salvar(d);
             atualizarTabela();
+            atualizarTotal();
             limparCampos();
         } catch (Exception e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -66,6 +68,7 @@ public class DespesaController {
         if (selecionada != null) {
             dao.excluir(selecionada.getId());
             atualizarTabela();
+            atualizarTotal();
         }
     }
 
@@ -86,6 +89,7 @@ public class DespesaController {
 
             dao.atualizar(selecionada);
             atualizarTabela();
+            atualizarTotal();
             limparCampos();
         }
     }
@@ -104,5 +108,13 @@ public class DespesaController {
         valorField.clear();
         dataPicker.setValue(null);
         categoriaBox.setValue(null);
+    }
+
+    private void atualizarTotal() {
+
+        double total = dao.total();
+
+
+        totalLabel.setText(String.format("R$ %.2f", total));
     }
 }
