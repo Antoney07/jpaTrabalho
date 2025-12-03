@@ -1,32 +1,59 @@
 package org;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import org.model.Despesa;
+import org.model.DespesaService;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        DespesaService service = new DespesaService();
 
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("un.jpa");
+        int opcao;
 
-        EntityManager em = emf.createEntityManager();
+        do {
+            System.out.println("1 - Cadastrar");
+            System.out.println("2 - Listar");
+            System.out.println("3 - Atualizar");
+            System.out.println("4 - Remover");
+            System.out.println("0 - Sair");
+            opcao = sc.nextInt();
+            sc.nextLine();
 
-        em.getTransaction().begin();
+            switch(opcao) {
+                case 1:
+                    Despesa d = new Despesa();
+                    System.out.print("Descrição: ");
+                    d.setDescricao(sc.nextLine());
+                    System.out.print("Valor: ");
+                    d.setValor(sc.nextDouble());
+                    d.setData(LocalDate.now());
+                    service.salvar(d);
+                    break;
 
-        Despesa d = new Despesa();
-        d.setDescricao("Teste1");
-        d.setValor(50);
-        d.setCategoria("Comida");
-        d.setData(LocalDate.now());
+                case 2:
+                    service.listar().forEach(System.out::println);
+                    break;
 
-        em.persist(d);
+                case 3:
+                    System.out.print("ID da despesa: ");
+                    int idUpdate = sc.nextInt();
+                    sc.nextLine();
+                    Despesa du = new Despesa();
+                    du.setId(idUpdate);
+                    System.out.print("Nova descrição: ");
+                    du.setDescricao(sc.nextLine());
+                    service.atualizar(du);
+                    break;
 
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+                case 4:
+                    System.out.print("ID para remover: ");
+                    int idDelete = sc.nextInt();
+                    service.excluir(idDelete);
+                    break;
+            }
+        } while(opcao != 0);
     }
 }

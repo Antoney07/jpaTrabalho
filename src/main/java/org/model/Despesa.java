@@ -32,5 +32,15 @@ public class Despesa {
         this.descricao = descricao;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + id +
+                " | Descrição: " + descricao +
+                " | Valor: " + valor +
+                " | Data: " + data +
+                " | Categoria: " + categoria;
+    }
+
+
 
 }
