@@ -8,7 +8,7 @@
             Persistence unit for the Jakarta Persistence tutorial of the Hibernate Getting Started Guide
         </description>
 
-        <class>org.model.Usuario</class>
+        <class>model.Despesa</class>
 
         <properties>
             <!-- Database connection settings -->
