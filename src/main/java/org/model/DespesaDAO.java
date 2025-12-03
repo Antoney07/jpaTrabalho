@@ -7,7 +7,7 @@ import java.util.List;
 public class DespesaDAO {
 
     private static final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("despesasPU");
+            Persistence.createEntityManagerFactory("un.jpa");
 
     public void salvar(Despesa d) {
         EntityManager em = emf.createEntityManager();
