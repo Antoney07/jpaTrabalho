@@ -18,14 +18,14 @@ public class Despesa {
     private String descricao;
     private double valor;
     private LocalDate data;
-    private String categoria;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
 
 
     public Despesa() {
     }
 
-    public Despesa(String categoria, LocalDate data, double valor, int id, String descricao) {
-        this.categoria = categoria;
+    public Despesa(LocalDate data, double valor, int id, String descricao) {
         this.data = data;
         this.valor = valor;
         this.id = id;

@@ -19,6 +19,6 @@ public enum Categoria {
 
     @Override
     public String toString() {
-        return descricao; // Isso faz aparecer bonitinho no ComboBox
+        return descricao;
     }
 }
